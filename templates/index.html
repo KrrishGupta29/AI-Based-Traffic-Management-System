@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI-Based Traffic Management System</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0e1117;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #e4e6eb;
+    }
+
+    .container {
+      background: #1c1f26;
+      padding: 40px 50px;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      z-index: 1;
+    }
+
+    h1 {
+      color: #61dafb;
+      margin-bottom: 25px;
+      font-size: 24px;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 10px;
+      font-size: 16px;
+      color: #c9d1d9;
+    }
+
+    input[type="file"] {
+      display: block;
+      margin: 0 auto 20px auto;
+      padding: 8px;
+      border: 1px solid #444c56;
+      border-radius: 6px;
+      font-size: 15px;
+      width: 100%;
+      background-color: #2d333b;
+      color: #ffffff;
+    }
+
+    button {
+      background-color: #238636;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2ea043;
+    }
+
+    /* Fullscreen overlay */
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    #overlay p {
+      color: #ffcc00;
+      font-size: 22px;
+      font-weight: bold;
+      
+    }
+
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>AI-Based Traffic Management</h1>
+    <form id="uploadForm" action="/run" method="POST" enctype="multipart/form-data">
+      <label for="image">Upload Traffic Image:</label>
+      <input type="file" id="image" name="image" accept="image/*" required>
+      <button type="submit">Run Detection</button>
+    </form>
+  </div>
+
+  <!-- Dark overlay loader -->
+  <div id="overlay">
+    <p>🧠 AI model detecting vehicles... Please wait.</p>
+  </div>
+
+  <script>
+    const form = document.getElementById("uploadForm");
+    const overlay = document.getElementById("overlay");
+
+    form.addEventListener("submit", function () {
+      overlay.style.display = "flex";
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Detection Result</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0e1117;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #e4e6eb;
+    }
+
+    .container {
+      background: #1c1f26;
+      padding: 40px 50px;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      color: #61dafb;
+      margin-bottom: 20px;
+      font-size: 26px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #c9d1d9;
+      margin: 10px 0;
+    }
+
+    h3 {
+      color: #58a6ff;
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+
+    img {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    button {
+      background-color: #238636;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 30px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2ea043;
+    }
+
+    a {
+      text-decoration: none;
+    }
+    .highlight {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffcc00;
+  margin-top: 20px;
+}
+
+#countdown {
+  font-size: 28px;
+  font-weight: bold;
+  color: rgb(7, 239, 7);
+}
+
+
+  </style>
+</head>
+
+
+<body>
+  <div class="container">
+    <h1>Detection Complete</h1>
+    <p>Detected Vehicles: <strong>{{ count }}</strong></p>
+    <p class="highlight">Adjusted Green Signal Time: <strong><span id="countdown">{{ time }}</span></strong> seconds</p>
+
+    <h3>Detected Image:</h3>
+    <img src="{{ url_for('static', filename='output.png') }}" alt="Detected Vehicles">
+
+    <a href="/"><button>Go Back</button></a>
+  </div>
+  <script>
+  // Read the initial time from server-rendered HTML
+  let timeLeft = parseInt("{{ time }}");
+  const countdownElement = document.getElementById('countdown');
+
+  // Ensure timer is shown right away
+  countdownElement.innerText = timeLeft;
+
+  const timer = setInterval(() => {
+    timeLeft--;
+    countdownElement.innerText = timeLeft;
+
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      countdownElement.innerText = "0";
+      setTimeout(() => {
+        alert("⏱️ Time's up! Please upload the next traffic image.");
+        window.location.href = "/";
+      }, 300);
+    }
+  }, 1000);
+</script>
+
+</body>
+
+</html>
+
