@@ -7,7 +7,7 @@ import sys
 run_from_flask = len(sys.argv) > 1 and sys.argv[1] == "--from-flask"
 
 # Load YOLOv8 model (Nano is fast, you can also use 'yolov8s.pt')
-model = YOLO("yolov8s.pt")
+model = YOLO("models/yolov8s.pt")
 
 # Load the image (update this to the correct path if from Flask)
 image_path = "static/uploaded.png" if run_from_flask else "Screenshot.png"
