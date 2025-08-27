@@ -7,15 +7,15 @@ An AI-powered solution to optimize traffic signal timings using YOLOv8 vehicle d
 Urban traffic congestion is a growing challenge. Traditional traffic lights operate on fixed timers, often leading to long waits and inefficient traffic flow.
 This project provides an AI-driven traffic management system that:
 
-Takes real-time traffic images from cameras.
+-> Takes real-time traffic images from cameras.
 
-Detects vehicles using YOLOv8 Object Detection.
+-> Detects vehicles using YOLOv8 Object Detection.
 
-Calculates vehicle density and count.
+-> Calculates vehicle density and count.
 
-Dynamically adjusts green signal timings to improve traffic flow.
+-> Dynamically adjusts green signal timings to improve traffic flow.
 
-Runs on a Flask backend for easy deployment.
+-> Runs on a Flask backend for easy deployment.
 
 ✨ Features:
 
